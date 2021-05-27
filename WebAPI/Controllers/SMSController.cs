@@ -8,14 +8,13 @@ using System.Threading.Tasks;
 using System.Web;
 using System.Web.Http;
 using Twilio.Types;
-using WebAPI.Filters;
+using WebAPI.Interfaces;
 using WebAPI.MessageHandlers;
 using WebAPI.Wrappers;
 
 namespace WebAPI.Controllers
 {
     [Route("WebAPI/SMS")]
-    [ApiExceptionFilter]
     public class SMSController : ApiController
     {
         private readonly IMediator _mediator;

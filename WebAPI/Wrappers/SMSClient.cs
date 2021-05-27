@@ -8,29 +8,22 @@ using Twilio;
 using Twilio.Clients;
 using Twilio.Http;
 using Twilio.Types;
+using WebAPI.Interfaces;
 
 namespace WebAPI.Wrappers
 {
-    public interface ISMSClient 
-    {
-        //Dictionary<string, PhoneNumber> FromNumbers { get; }
-        void Init();
-    }
     public class SMSClient : ISMSClient
     {
-        //public Dictionary<string, PhoneNumber> FromNumbers { get; }
-        private string _accountSid;
-        private string _authToken;
-        public SMSClient(string accountSid, string authToken)
-        //public SMSClient(string accountSid, string authToken, Dictionary<string, PhoneNumber> fromNumbers)
-        {
-            //FromNumbers = fromNumbers;
-            _accountSid = accountSid;
-            _authToken = authToken;
-        }
+
         public void Init()
         {
-            TwilioClient.Init(_accountSid, _authToken);
+            TwilioClient.Init(AccountSid, AuthToken);
         }
+
+        public string WebHookBaseUrl { get; set; }
+        public string AccountSid { get; set; }
+        public string AuthToken { get; set; }
+        public bool IsTestEnvironment { get; set; }
+
     }
 }

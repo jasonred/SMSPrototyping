@@ -182,18 +182,22 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\ConversationController.cs" />
     <Compile Include="Controllers\SMSController.cs" />
-    <Compile Include="Filters\ApiExceptionFilterAttribute.cs" />
+    <Compile Include="Filters\ValidateTwilioRequest.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Interfaces\ISMSClient.cs" />
     <Compile Include="MessageHandlers\ConversationAddSMSParticipant.cs" />
+    <Compile Include="MessageHandlers\ConversationCreateWebHooks.cs" />
     <Compile Include="MessageHandlers\ConversationFetchParticipants.cs" />
+    <Compile Include="MessageHandlers\ConversationOnMessageAdded.cs" />
     <Compile Include="MessageHandlers\ConversationStart.cs" />
     <Compile Include="MessageHandlers\ConversationCreate.cs" />
     <Compile Include="MessageHandlers\ConversationAddMessage.cs" />
     <Compile Include="MessageHandlers\ConversationFetch.cs" />
     <Compile Include="MessageHandlers\ConversationFetchMessages.cs" />
     <Compile Include="MessageHandlers\SMSSend.cs" />
+    <Compile Include="Models\ConversationOnMessageAddedResource.cs" />
     <Compile Include="Models\TwilioErrorCodes.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Wrappers\SMSClient.cs" />
@@ -207,6 +211,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Attributes\" />
     <Folder Include="Data\" />
     <Folder Include="Views\Twilio\" />
   </ItemGroup>

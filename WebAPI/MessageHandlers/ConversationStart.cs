@@ -33,6 +33,10 @@ namespace WebAPI.MessageHandlers
                 // Add a participant to the conversation
                 await _mediator.Send(new ConversationAddSMSParticipant
                     .Request(conversation.Sid, request.FromPhoneNumber, request.ToPhoneNumber));
+
+                await _mediator.Send(new ConversationCreateWebHooks.Request(conversation.Sid, request.WebHookBaseUrl,new List<string> {
+                        "onMessageAdded"
+                }));
             }
             catch (ApiException ex)
             {
@@ -68,16 +72,18 @@ namespace WebAPI.MessageHandlers
 
         public class Request : IRequest<Response>
         {
-            public Request(PhoneNumber fromPhoneNumber, PhoneNumber toPhoneNumber, string message)
+            public Request(PhoneNumber toPhoneNumber, PhoneNumber fromPhoneNumber, string message, string webHookBaseUrl)
             {
                 ToPhoneNumber = toPhoneNumber;
                 FromPhoneNumber = fromPhoneNumber;
                 Message = message;
+                WebHookBaseUrl = webHookBaseUrl;
             }
 
             public PhoneNumber ToPhoneNumber { get; }
             public PhoneNumber FromPhoneNumber { get; }
             public string Message { get; }
+            public string WebHookBaseUrl { get; }
         }
 
         public class Response

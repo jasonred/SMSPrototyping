@@ -1,5 +1,6 @@
 ﻿using Autofac;
 using Autofac.Core;
+using System;
 using System.Configuration;
 using Twilio.Clients;
 using WebAPI.Wrappers;
@@ -10,10 +11,13 @@ namespace WebAPI.App_Start
     {
         protected override void Load(ContainerBuilder builder)
         {
-            var accountSid = ConfigurationManager.AppSettings["Twilio:AccountSid"];
-            var authToken = ConfigurationManager.AppSettings["Twilio:AuthToken"];
-            builder.Register(c => new SMSClient(accountSid, authToken))
-                .AsSelf().AsImplementedInterfaces().SingleInstance();
+            builder.Register(c => new SMSClient
+            {
+                AccountSid = ConfigurationManager.AppSettings["Twilio:AccountSid"], 
+                AuthToken = ConfigurationManager.AppSettings["Twilio:AuthToken"], 
+                WebHookBaseUrl = ConfigurationManager.AppSettings["Twilio:WebHookBaseUrl"],
+                IsTestEnvironment = Convert.ToBoolean(ConfigurationManager.AppSettings["Twilio:IsTestEnvironment"])
+            }).AsSelf().AsImplementedInterfaces().SingleInstance();
         }
     }
 }
