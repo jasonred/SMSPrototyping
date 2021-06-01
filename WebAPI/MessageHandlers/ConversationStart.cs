@@ -72,7 +72,7 @@ namespace WebAPI.MessageHandlers
 
         public class Request : IRequest<Response>
         {
-            public Request(PhoneNumber toPhoneNumber, PhoneNumber fromPhoneNumber, string message, string webHookBaseUrl)
+            public Request(PhoneNumber fromPhoneNumber, PhoneNumber toPhoneNumber, string message, string webHookBaseUrl)
             {
                 ToPhoneNumber = toPhoneNumber;
                 FromPhoneNumber = fromPhoneNumber;

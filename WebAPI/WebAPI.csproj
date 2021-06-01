@@ -189,6 +189,7 @@
     <Compile Include="Interfaces\ISMSClient.cs" />
     <Compile Include="MessageHandlers\ConversationAddSMSParticipant.cs" />
     <Compile Include="MessageHandlers\ConversationCreateWebHooks.cs" />
+    <Compile Include="MessageHandlers\ConversationClose.cs" />
     <Compile Include="MessageHandlers\ConversationFetchParticipants.cs" />
     <Compile Include="MessageHandlers\ConversationOnMessageAdded.cs" />
     <Compile Include="MessageHandlers\ConversationStart.cs" />

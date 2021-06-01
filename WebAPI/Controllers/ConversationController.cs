@@ -26,6 +26,12 @@ namespace WebAPI.Controllers
             var result = await _mediator.Send(new ConversationStart.Request(fromPhoneNumber, toPhoneNumber, message, _client.WebHookBaseUrl));
             return Json(result);
         }
+        [Route("CloseConversation")]
+        public async Task<IHttpActionResult> CloseConversation(string conversationSid)
+        {
+            var result = await _mediator.Send(new ConversationClose.Request(conversationSid));
+            return Json(result);
+        }
         [Route("AddMessage")]
         public async Task<IHttpActionResult> AddMessage(string conversationSid, string message)
         {
